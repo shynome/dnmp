@@ -5,9 +5,9 @@
   "scripts": {
     "prestart": "npm run pull",
     "start": "npm run update",
-    "update": "sudo docker stack deploy -c docker-compose.yml main",
-    "list": "sudo docker stack services main",
-    "stop": "sudo docker stack down main",
+    "update": "sudo docker stack deploy -c docker-compose.yml web",
+    "list": "sudo docker stack services web",
+    "stop": "sudo docker stack down web",
     "pull": "node scripts/pull.js",
     "nginx_reload": "sudo docker exec $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") nginx -s reload"
   },
