@@ -5,7 +5,19 @@ volumes:
   www:
     driver_opts: 
       type: none
-      device: /docker/data/www
+      device: /work/dnmp/www
+      o: bind
+
+  nginx_conf:
+    driver_opts: 
+      type: none
+      device: /work/dnmp/nginx
+      o: bind
+  
+  mysql:
+    driver_opts: 
+      type: none
+      device: /docker/data/mysql
       o: bind
 
 services: 
@@ -13,11 +25,51 @@ services:
   proxy:
     image: nginx:stable-alpine
     labels: 
-      name: nginx
+      name: web
     deploy:
       replicas: 1
+      resources:
+        limits:
+          memory: 500M
     ports: 
     - '443:443'
     - '80:80'
     volumes: 
-    - 'www:/var/www/html/:ro'
+    - nginx_conf:/etc/nginx/conf.d
+    - www:/www
+
+  # mysql
+  mysql:
+    image: mariadb
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 1G
+    volumes: 
+    - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    deploy:
+      replicas: 0
+    ports: 
+    - 8080:80
+    environment: 
+    - PMA_HOST=mysql
+
+  php7: 
+    image: hermsi/alpine-fpm-php
+    deploy:
+      replicas: 1
+    volumes: 
+    - www:/www
+
+  # php5:
+  #   image: cytopia/php-fpm-5.6
+  #   deploy:
+  #     replicas: 0
+  #   volumes: 
+  #   - www:/www
