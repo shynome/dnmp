@@ -64,6 +64,9 @@ services:
     image: hermsi/alpine-fpm-php
     deploy:
       replicas: 1
+      resources:
+        limits:
+          memory: 500M
     volumes: 
     - www:/www
 
@@ -71,5 +74,8 @@ services:
   #   image: cytopia/php-fpm-5.6
   #   deploy:
   #     replicas: 0
+  #     resources:
+  #       limits:
+  #         memory: 500M
   #   volumes: 
   #   - www:/www
