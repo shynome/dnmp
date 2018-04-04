@@ -1,15 +1,16 @@
 {
-  "name": "feverone-localhost",
+  "name": "none",
   "version": "0.0.1",
   "description": "",
   "scripts": {
     "prestart": "npm run pull",
     "start": "npm run update",
-    "update": "sudo docker stack deploy -c docker-compose.yml web",
-    "list": "sudo docker stack services web",
-    "stop": "sudo docker stack down web",
+    "update": "docker stack deploy -c docker-compose.yml web",
+    "list": "docker stack services web",
+    "stop": "docker stack down web",
     "pull": "node scripts/pull.js",
-    "nginx_reload": "sudo docker exec $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") nginx -s reload"
+    "nginx_reload": "docker exec $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") nginx -s reload",
+    "nginx": "docker exec -ti $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") sh"
   },
   "keywords": [],
   "author": "shynome",
