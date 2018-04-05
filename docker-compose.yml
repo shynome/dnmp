@@ -17,7 +17,7 @@ volumes:
   mysql:
     driver_opts: 
       type: none
-      device: /docker/data/mysql
+      device: /work/dnmp/mysql
       o: bind
 
 services: 
