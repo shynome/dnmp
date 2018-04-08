@@ -17,7 +17,7 @@ volumes:
   mysql:
     driver_opts: 
       type: none
-      device: /work/dnmp/mysql
+      device: /work/dnmp/data/mysql
       o: bind
 
 services: 
