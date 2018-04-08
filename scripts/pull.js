@@ -12,7 +12,7 @@ async function pull_images(){
 
     let { image } = config.services[key]
 
-    shell.exec(`sudo docker pull ${image}`)
+    shell.exec(`docker pull ${image}`)
     
   }
 
