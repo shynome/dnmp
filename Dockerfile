@@ -4,10 +4,10 @@ RUN set -xe && \
   echo finished
 
 FROM alpine
+COPY --from=base / /
 WORKDIR /web
 VOLUME [ /web ]
 EXPOSE 24
-COPY --from=base / /
 
 COPY . /web
 RUN npm i --production
