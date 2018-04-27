@@ -11,3 +11,4 @@ EXPOSE 24
 COPY . /web
 RUN npm i --production
 
+CMD ping baidu.com
