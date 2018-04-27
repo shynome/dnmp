@@ -1,16 +1,19 @@
 {
-  "name": "none",
+  "name": "",
   "version": "0.0.1",
+  "private": true,
   "description": "",
   "scripts": {
     "prestart": "npm run pull",
     "start": "npm run update",
     "update": "docker stack deploy -c docker-compose.yml web",
     "list": "docker stack services web",
+    "ps": "docker ps --filter name='web_'",
     "stop": "docker stack down web",
     "pull": "node scripts/pull.js",
     "nginx_reload": "docker exec $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") nginx -s reload",
-    "nginx": "docker exec -ti $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") sh"
+    "nginx": "docker exec -ti $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") sh",
+    "postversion": "git push --follow-tags"
   },
   "keywords": [],
   "author": "shynome",
