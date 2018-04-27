@@ -4,6 +4,7 @@
   "private": true,
   "description": "",
   "scripts": {
+
     "prestart": "npm run pull",
     "start": "npm run update",
     "update": "docker stack deploy -c docker-compose.yml web",
@@ -13,7 +14,12 @@
     "pull": "node scripts/pull.js",
     "nginx_reload": "docker exec $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") nginx -s reload",
     "nginx": "docker exec -ti $(sudo docker container ls --filter 'label=name=web' --format \"{{.ID}}\") sh",
-    "postversion": "git push --follow-tags"
+
+    "postversion": "git push --follow-tags",
+    "build": "docker build . -t shynome/dnmp:test",
+    "build-cn": "docker build . -f Dockerfile-cn -t shynome/dnmp:test",
+    "test": "docker run --rm -ti shynome/dnmp:test sh"
+    
   },
   "keywords": [],
   "author": "shynome",
