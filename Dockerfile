@@ -5,7 +5,7 @@ RUN set -xe && \
 
 FROM alpine
 WORKDIR /web
-VOLUME [ /web, /var/run/docker.sock ]
+VOLUME [ /web ]
 EXPOSE 24
 COPY --from=base / /
 
