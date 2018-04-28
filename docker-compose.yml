@@ -5,19 +5,19 @@ volumes:
   www:
     driver_opts: 
       type: none
-      device: /work/dnmp/www
+      device: /web/www
       o: bind
 
   nginx_conf:
     driver_opts: 
       type: none
-      device: /work/dnmp/nginx
+      device: /web/nginx
       o: bind
   
   mysql:
     driver_opts: 
       type: none
-      device: /work/dnmp/data/mysql
+      device: /web/data/mysql
       o: bind
 
 services: 
